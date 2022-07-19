@@ -10,7 +10,8 @@ router.get("/", async (req, res) => {
   try {
     res.json({
       status: 200,
-      message: '{"abcde":"aabb"}'
+      message: {"abcde":"aabb", "adu": 1},
+      data: JSON.stringify({a : 1, b: 2, "c": 3}),
     });
   } catch (error) {
     console.error(error);
