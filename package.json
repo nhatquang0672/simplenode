@@ -1,5 +1,5 @@
 {
-  "name": "express-vercel",
+  "name": "simplenode",
   "version": "1.0.0",
   "description": "Deploy express js to vercel.",
   "main": "index.js",
@@ -11,15 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hatuanem199801/express-vercel.git"
+    "url": "git+https://github.com/nhatquang0672/simplenode.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hatuanem199801/express-vercel/issues"
-  },
-  "homepage": "https://github.com/hatuanem199801/express-vercel#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
