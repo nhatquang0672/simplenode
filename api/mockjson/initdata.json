@@ -1,0 +1,24 @@
+{
+    "serviceAgreement": [
+      {
+        "value": "1",
+        "label": "January",
+        "selected": false
+      },
+      {
+        "value": "2",
+        "label": "FEB",
+        "selected": true
+      },
+      {
+        "value": "3",
+        "label": "MAR",
+        "selected": false
+      },
+      {
+        "value": "4",
+        "label": "APR",
+        "selected": false
+      }
+    ]
+  }
