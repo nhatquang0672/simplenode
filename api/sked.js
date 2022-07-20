@@ -10,7 +10,7 @@ router.get("/initdata", async (req, res) => {
   try {
     res.json({
       status: 200,
-      message: {"abcde":"aabb", "adu": 1},
+      message: {"abcde":"aabb", "adu": 1, "quang":"test realtime edit on github"},
       data: JSON.stringify({a : 1, b: 2, "c": 3}),
     });
   } catch (error) {
