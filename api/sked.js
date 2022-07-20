@@ -44,7 +44,8 @@ router.get("/initdata", async (req, res) => {
  */
  router.get("/categories", async (req, res) => {
   try {
-    res.json('/mockjson/getAvailableCategories.json');
+    var jsonFile = require("/mockjson/getAvailableCategories.json"); // path of your json file
+    res.json(jsonFile);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Server error");
