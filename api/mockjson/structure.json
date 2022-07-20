@@ -1,0 +1,72 @@
+[
+    {
+      "label": "Service Agreement",
+      "key": "slServiceAgreement",
+      "type": "select",
+      "apiKey": "serviceAgreement",
+      "ref": [
+        "serviceAgreementItem"
+      ],
+      "validate": {
+        "required": true
+      },
+      "dataKey": "serviceAgreementList",
+      "dataSource": {
+        "type": "onLoad"
+      },
+      "defaultDisplay": true
+    },
+    {
+      "label": "Service Agreement Item",
+      "key": "slServiceAgreementItem",
+      "type": "select",
+      "apiKey": "serviceAgreementItem",
+      "validate": {
+        "required": true
+      },
+      "refAction": {
+        "operate": "AND",
+        "show": [
+          {
+            "apiKey": "serviceAgreement",
+            "condition": "!=",
+            "value": null
+          },
+          {
+            "apiKey": "note",
+            "condition": "==",
+            "value": "text"
+          }
+        ],
+        "getData": true
+      },
+      "dataKey": "serviceAgreementItemList",
+      "dataSource": {
+        "type": "api",
+        "timeInit": "onAction",
+        "apiName": "getServiceAgreementItemList",
+        "paramKey": [
+          {
+            "apiKey": "serviceAgreement",
+            "path": "value"
+          }
+        ],
+        "param": "serviceAgreement : {0}"
+      },
+      "defaultDisplay": false
+    },
+    {
+      "label": "Note",
+      "key": "txtNote",
+      "type": "text",
+      "apiKey": "note",
+      "validate": {
+        "required": true
+      },
+      "ref": [
+        "serviceAgreementItem"
+      ],
+      "defaultValue": "This is a note field",
+      "defaultDisplay": true
+    }
+  ]

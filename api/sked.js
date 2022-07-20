@@ -26,11 +26,8 @@ router.get("/initdata", async (req, res) => {
  */
  router.get("/structure", async (req, res) => {
   try {
-    res.json({
-      status: 200,
-      message: {"abcde":"aabb", "adu": 1},
-      data: JSON.stringify({a : 1, b: 2, "c": 3}),
-    });
+    const jsonFile = require('./mockjson/structure.json'); // path of your json file
+    res.json(jsonFile);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Server error");
