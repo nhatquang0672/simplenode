@@ -1,0 +1,87 @@
+{
+    "thirdParty": "KeyPay",
+    "fields": [
+      {
+        "label": "KeyPay Delivery Methods",
+        "key": "slServiceDeliveryMethods",
+        "type": "select",
+        "apiKey": "skedhealthcare__Delivery_Method__c",
+        "validate": {
+          "required": true
+        },
+        "dataSource": {
+          "type": "onLoad",
+          "dataKey": "serviceDeliveryMethods"
+        },
+        "defaultDisplay": true,
+        "persit": true
+      },
+      {
+        "label": "KeyPay Category",
+        "key": "slCategory",
+        "type": "select",
+        "apiKey": "category",
+        "ref": [
+          "skedhealthcare__Service__c",
+          "skedhealthcare__Service_Agreement_Item__c"
+        ],
+        "validate": {
+          "required": true
+        },
+        "dataSource": {
+          "type": "onLoad",
+          "dataKey": "categories"
+        },
+        "defaultDisplay": true
+      },
+      {
+        "label": "KeyPay Service Agreement Item",
+        "key": "slServiceAgreementItem",
+        "type": "select",
+        "apiKey": "skedhealthcare__Service_Agreement_Item__c",
+        "validate": {
+          "required": true
+        },
+        "ref": [
+          "skedhealthcare__Rate__c"
+        ],
+        "refAction": {
+          "operate": "OR",
+          "show": [
+            {
+              "apiKey": "skedhealthcare__Site__c",
+              "condition": "!=",
+              "value": null
+            },
+            {
+              "apiKey": "category",
+              "condition": "==",
+              "value": "Uncategorised"
+            }
+          ],
+          "getData": true
+        },
+        "dataSource": {
+          "type": "api",
+          "apiName": "getServiceAgreementItems",
+          "paramKey": [
+            {
+              "apiKey": "skedhealthcare__Service__c",
+              "path": "value"
+            }
+          ],
+          "param": "service : {0}"
+        },
+        "defaultDisplay": false,
+        "persit": true
+      },
+      {
+        "label": "Save",
+        "key": "btnSave",
+        "type": "button",
+        "buttonType": "primary",
+        "apiKey": "btnSave",
+        "defaultDisplay": true
+      }
+    ]
+  }

@@ -23,7 +23,7 @@ router.get("/initdata", async (req, res) => {
  */
  router.get("/structure", async (req, res) => {
   try {
-    const jsonFile = require('./mockjson/structure.json'); // path of your json file
+    const jsonFile = require('./mockjson/keypay.json'); // path of your json file
     res.json(jsonFile);
   } catch (error) {
     console.error(error);
