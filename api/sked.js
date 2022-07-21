@@ -31,20 +31,4 @@ router.get("/initdata", async (req, res) => {
   }
 });
 
-/**
- * GET available categories of Mylla Mycullough.
- *
- * @return JSON structure
- */
- router.get("/categories", async (req, res) => {
-  try {
-    const jsonFile = require('./mockjson/getAvailableCategories.json'); // path of your json file
-    res.json(jsonFile);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send("Server error");
-  }
-});
-
-
 module.exports = router;

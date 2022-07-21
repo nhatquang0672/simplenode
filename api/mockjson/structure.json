@@ -1,26 +1,162 @@
-[
+{
+  "thirdParty": "Lumary",
+  "fields": [
     {
-      "label": "Service Agreement",
-      "key": "slServiceAgreement",
+      "label": "Delivery Methods",
+      "key": "slServiceDeliveryMethods",
       "type": "select",
-      "apiKey": "serviceAgreement",
+      "apiKey": "skedhealthcare__Delivery_Method__c",
+      "validate": {
+        "required": true
+      },
+      "dataSource": {
+        "type": "onLoad",
+        "dataKey": "serviceDeliveryMethods"
+      },
+      "defaultDisplay": true,
+      "persit": true
+    },
+    {
+      "label": "Category",
+      "key": "slCategory",
+      "type": "select",
+      "apiKey": "category",
       "ref": [
-        "serviceAgreementItem"
+        "skedhealthcare__Service__c",
+        "skedhealthcare__Service_Agreement_Item__c"
       ],
       "validate": {
         "required": true
       },
-      "dataKey": "serviceAgreementList",
       "dataSource": {
-        "type": "onLoad"
+        "type": "onLoad",
+        "dataKey": "categories"
       },
       "defaultDisplay": true
+    },
+    {
+      "label": "Service",
+      "key": "slService",
+      "type": "select",
+      "apiKey": "skedhealthcare__Service__c",
+      "validate": {
+        "required": true
+      },
+      "ref": [
+        "skedhealthcare__Site__c"
+      ],
+      "refAction": {
+        "operate": "AND",
+        "show": [
+          {
+            "apiKey": "category",
+            "condition": "!=",
+            "value": "Uncategorised"
+          },
+          {
+            "apiKey": "category",
+            "condition": "!=",
+            "value": null
+          }
+        ],
+        "getData": true
+      },
+      "dataSource": {
+        "type": "api",
+        "apiName": "getServices",
+        "paramKey": [
+          {
+            "apiKey": "category",
+            "path": "value"
+          }
+        ],
+        "param": "category : {0}"
+      },
+      "defaultDisplay": false,
+      "persit": true
+    },
+    {
+      "label": "Site",
+      "key": "slSite",
+      "type": "select",
+      "apiKey": "skedhealthcare__Site__c",
+      "validate": {
+        "required": true
+      },
+      "ref": [
+        "skedhealthcare__Service_Agreement_Item__c"
+      ],
+      "refAction": {
+        "operate": "AND",
+        "show": [
+          {
+            "apiKey": "skedhealthcare__Service__c",
+            "condition": "!=",
+            "value": null
+          }
+        ],
+        "getData": true
+      },
+      "dataSource": {
+        "type": "api",
+        "apiName": "getSites",
+        "paramKey": [
+          {
+            "apiKey": "skedhealthcare__Service__c",
+            "path": "value"
+          }
+        ],
+        "param": "service : {0}"
+      },
+      "defaultDisplay": false,
+      "persit": true
     },
     {
       "label": "Service Agreement Item",
       "key": "slServiceAgreementItem",
       "type": "select",
-      "apiKey": "serviceAgreementItem",
+      "apiKey": "skedhealthcare__Service_Agreement_Item__c",
+      "validate": {
+        "required": true
+      },
+      "ref": [
+        "skedhealthcare__Rate__c"
+      ],
+      "refAction": {
+        "operate": "OR",
+        "show": [
+          {
+            "apiKey": "skedhealthcare__Site__c",
+            "condition": "!=",
+            "value": null
+          },
+          {
+            "apiKey": "category",
+            "condition": "==",
+            "value": "Uncategorised"
+          }
+        ],
+        "getData": true
+      },
+      "dataSource": {
+        "type": "api",
+        "apiName": "getServiceAgreementItems",
+        "paramKey": [
+          {
+            "apiKey": "skedhealthcare__Service__c",
+            "path": "value"
+          }
+        ],
+        "param": "service : {0}"
+      },
+      "defaultDisplay": false,
+      "persit": true
+    },
+    {
+      "label": "Rate",
+      "key": "slRate",
+      "type": "select",
+      "apiKey": "skedhealthcare__Rate__c",
       "validate": {
         "required": true
       },
@@ -28,45 +164,39 @@
         "operate": "AND",
         "show": [
           {
-            "apiKey": "serviceAgreement",
+            "apiKey": "skedhealthcare__Service_Agreement_Item__c",
             "condition": "!=",
             "value": null
           },
           {
-            "apiKey": "note",
-            "condition": "==",
-            "value": "text"
+            "apiKey": "skedhealthcare__Service__c",
+            "condition": "!=",
+            "value": null
           }
         ],
         "getData": true
       },
-      "dataKey": "serviceAgreementItemList",
       "dataSource": {
         "type": "api",
-        "timeInit": "onAction",
-        "apiName": "getServiceAgreementItemList",
+        "apiName": "getRates",
         "paramKey": [
           {
-            "apiKey": "serviceAgreement",
+            "apiKey": "skedhealthcare__Rate__c",
             "path": "value"
           }
         ],
-        "param": "serviceAgreement : {0}"
+        "param": "service : {0}"
       },
-      "defaultDisplay": false
+      "defaultDisplay": false,
+      "persit": true
     },
     {
-      "label": "Note",
-      "key": "txtNote",
-      "type": "text",
-      "apiKey": "note",
-      "validate": {
-        "required": true
-      },
-      "ref": [
-        "serviceAgreementItem"
-      ],
-      "defaultValue": "This is a note field",
+      "label": "Save",
+      "key": "btnSave",
+      "type": "button",
+      "buttonType": "primary",
+      "apiKey": "btnSave",
       "defaultDisplay": true
     }
   ]
+}
