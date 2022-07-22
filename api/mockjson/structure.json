@@ -1,23 +1,8 @@
 {
-    "thirdParty": "Lumary",
+    "thirdParty": "KeyPay",
     "fields": [
       {
-        "label": "Delivery Methods",
-        "key": "slServiceDeliveryMethods",
-        "type": "select",
-        "apiKey": "skedhealthcare__Delivery_Method__c",
-        "validate": {
-          "required": true
-        },
-        "dataSource": {
-          "type": "onLoad",
-          "dataKey": "serviceDeliveryMethods"
-        },
-        "defaultDisplay": true,
-        "persit": true
-      },
-      {
-        "label": "Category",
+        "label": "KeyPay Category",
         "key": "slCategory",
         "type": "select",
         "apiKey": "category",
@@ -35,84 +20,7 @@
         "defaultDisplay": true
       },
       {
-        "label": "Service",
-        "key": "slService",
-        "type": "select",
-        "apiKey": "skedhealthcare__Service__c",
-        "validate": {
-          "required": true
-        },
-        "ref": [
-          "skedhealthcare__Site__c"
-        ],
-        "refAction": {
-          "operate": "AND",
-          "show": [
-            {
-              "apiKey": "category",
-              "condition": "!=",
-              "value": "Uncategorised"
-            },
-            {
-              "apiKey": "category",
-              "condition": "!=",
-              "value": null
-            }
-          ],
-          "getData": true
-        },
-        "dataSource": {
-          "type": "api",
-          "apiName": "getServices",
-          "paramKey": [
-            {
-              "apiKey": "category",
-              "path": "value"
-            }
-          ],
-          "param": "category : {0}"
-        },
-        "defaultDisplay": false,
-        "persit": true
-      },
-      {
-        "label": "Site",
-        "key": "slSite",
-        "type": "select",
-        "apiKey": "skedhealthcare__Site__c",
-        "validate": {
-          "required": true
-        },
-        "ref": [
-          "skedhealthcare__Service_Agreement_Item__c"
-        ],
-        "refAction": {
-          "operate": "AND",
-          "show": [
-            {
-              "apiKey": "skedhealthcare__Service__c",
-              "condition": "!=",
-              "value": null
-            }
-          ],
-          "getData": true
-        },
-        "dataSource": {
-          "type": "api",
-          "apiName": "getSites",
-          "paramKey": [
-            {
-              "apiKey": "skedhealthcare__Service__c",
-              "path": "value"
-            }
-          ],
-          "param": "service : {0}"
-        },
-        "defaultDisplay": false,
-        "persit": true
-      },
-      {
-        "label": "Service Agreement Item",
+        "label": "KeyPay Service Item",
         "key": "slServiceAgreementItem",
         "type": "select",
         "apiKey": "skedhealthcare__Service_Agreement_Item__c",
@@ -133,7 +41,7 @@
             {
               "apiKey": "category",
               "condition": "==",
-              "value": "Uncategorised"
+              "value": "a0i1I000001fYbQQAU"
             }
           ],
           "getData": true
@@ -144,44 +52,6 @@
           "paramKey": [
             {
               "apiKey": "skedhealthcare__Service__c",
-              "path": "value"
-            }
-          ],
-          "param": "service : {0}"
-        },
-        "defaultDisplay": false,
-        "persit": true
-      },
-      {
-        "label": "Rate",
-        "key": "slRate",
-        "type": "select",
-        "apiKey": "skedhealthcare__Rate__c",
-        "validate": {
-          "required": true
-        },
-        "refAction": {
-          "operate": "AND",
-          "show": [
-            {
-              "apiKey": "skedhealthcare__Service_Agreement_Item__c",
-              "condition": "!=",
-              "value": null
-            },
-            {
-              "apiKey": "skedhealthcare__Service__c",
-              "condition": "!=",
-              "value": null
-            }
-          ],
-          "getData": true
-        },
-        "dataSource": {
-          "type": "api",
-          "apiName": "getRates",
-          "paramKey": [
-            {
-              "apiKey": "skedhealthcare__Rate__c",
               "path": "value"
             }
           ],
