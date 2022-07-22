@@ -20,7 +20,7 @@
         "defaultDisplay": true
       },
       {
-        "label": "KeyPay Service Agreement Item",
+        "label": "KeyPay Service Item",
         "key": "slServiceAgreementItem",
         "type": "select",
         "apiKey": "skedhealthcare__Service_Agreement_Item__c",
@@ -41,7 +41,7 @@
             {
               "apiKey": "category",
               "condition": "==",
-              "value": "Transport (auto payments)"
+              "value": "a0i1I000001fYbQQAU"
             }
           ],
           "getData": true
