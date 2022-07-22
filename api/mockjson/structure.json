@@ -41,7 +41,7 @@
             {
               "apiKey": "category",
               "condition": "==",
-              "value": "Transport (auto payments)"
+              "value": "a0i1I000001fYbQQAU"
             }
           ],
           "getData": true
